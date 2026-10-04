@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="CareBridge solution research report - SIH26133 - Team AudaX">
+  <title>CareBridge | Solution Research Report</title>
+  <link rel="stylesheet" href="style-1.css">
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div>
+        <div class="brand"><span class="brand-mark">A</span><span>AudaX</span></div>
+        <div class="eyebrow">SIH26133 · TEAM AUDAX</div>
+        <h1>CareBridge</h1>
+        <p class="subtitle">Solution Research Report</p>
+      </div>
+      <div class="header-meta">
+        <span>Smart India Hackathon 2026</span>
+        <span>Final revision · 19 September 2026</span>
+      </div>
+    </div>
+  </header>
+
+  <nav class="top-nav">
+    <div class="container nav-inner">
+      <a href="#overview">Overview</a>
+      <a href="#evidence">Evidence</a>
+      <a href="#solution">Solution</a>
+      <a href="#workflow">Referral</a>
+      <a href="#innovation">USPs</a>
+      <a href="#architecture">Architecture</a>
+      <a href="#roadmap">Roadmap</a>
+      <a href="#kpis">KPIs</a>
+      <a href="#qa">Q&A</a>
+      <a href="#sources">Sources</a>
+    </div>
+  </nav>
+
+  <main class="container">
+
+    <section class="hero" id="overview">
+      <div>
+        <span class="section-number">00</span>
+        <h2>Care coordination across the public-health journey</h2>
+        <p>
+          CareBridge is positioned as a closed-loop care-coordination layer connecting
+          existing public-health touchpoints rather than replacing them.
+        </p>
+      </div>
+
+      <div class="hero-table">
+        <table>
+          <thead>
+            <tr><th>Care step</th><th>System responsibility</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>First contact</td><td>Capture episode and support structured triage</td></tr>
+            <tr><td>Facility selection</td><td>Match clinical/service need with facility capability and readiness</td></tr>
+            <tr><td>Referral</td><td>Keep referral active through acceptance, scheduling, arrival and outcome</td></tr>
+            <tr><td>Diagnostics / medicines</td><td>Coordinate availability and surface current resource information</td></tr>
+            <tr><td>Treatment / back-referral</td><td>Record outcome and return information to the care timeline</td></tr>
+            <tr><td>Follow-up</td><td>Assign due date, owner and escalation for high-risk cases</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="evidence">
+      <div class="section-head">
+        <span class="section-number">01</span>
+        <div>
+          <h2>Evidence Snapshot</h2>
+          <p>Key figures and the problem-to-solution mapping used in the report.</p>
+        </div>
+      </div>
+
+      <div class="stats">
+        <div class="stat"><strong>493M+</strong><span>eSanjeevani consultations reported as of 16 Aug 2026</span></div>
+        <div class="stat"><strong>240K+</strong><span>trained / onboarded providers</span></div>
+        <div class="stat"><strong>141K+</strong><span>spokes</span></div>
+        <div class="stat"><strong>19K+</strong><span>hubs</span></div>
+        <div class="stat"><strong>13</strong><span>AAM service package in Maharashtra</span></div>
+        <div class="stat"><strong>₹5,980.08 cr</strong><span>Maharashtra public-health strengthening allocation cited</span></div>
+        <div class="stat"><strong>₹4,500 cr</strong><span>Pragati Yojana screening initiative cited</span></div>
+        <div class="stat"><strong>M1–M3</strong><span>ABDM readiness / certification sequence described</span></div>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>System gap</th><th>CareBridge response</th><th>Primary measure</th></tr></thead>
+          <tbody>
+            <tr><td>Wrong-facility / unnecessary travel</td><td>Capability-aware facility routing</td><td>Appropriate first-time referral rate</td></tr>
+            <tr><td>Referral leakage</td><td>Closed-loop referral lifecycle</td><td>Referral closure rate</td></tr>
+            <tr><td>Resource uncertainty</td><td>Service, diagnostic, medicine and equipment readiness</td><td>Current capability-record rate</td></tr>
+            <tr><td>Connectivity gaps</td><td>Offline local queue + synchronization</td><td>Offline transaction / sync success</td></tr>
+            <tr><td>Language and health-literacy barriers</td><td>Local-language, voice and assisted workflows</td><td>Task completion / training time</td></tr>
+            <tr><td>High-risk follow-up leakage</td><td>Risk register + due dates + escalation</td><td>Follow-up completion</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note">Figures in this section are reproduced from the uploaded research report and should be rechecked against primary sources before public submission.</p>
+    </section>
+
+    <section id="solution">
+      <div class="section-head">
+        <span class="section-number">02</span>
+        <div>
+          <h2>Existing Ecosystem and CareBridge Role</h2>
+          <p>CareBridge coordinates existing infrastructure instead of rebuilding it.</p>
+        </div>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Existing system</th><th>Current role</th><th>CareBridge role</th></tr></thead>
+          <tbody>
+            <tr><td>ABDM / ABHA / HFR / PHR</td><td>Digital identity, facility/professional registries, longitudinal records and consent-based exchange.</td><td>Integrate with approved interfaces; focus on journey orchestration, referral closure, follow-up and readiness.</td></tr>
+            <tr><td>eSanjeevani</td><td>Doctor-to-doctor and patient-to-doctor telemedicine.</td><td>Use teleconsultation as a care-journey step when clinically appropriate.</td></tr>
+            <tr><td>NHM 108/102</td><td>Emergency and patient transport services.</td><td>Coordinate emergency escalation and receiving-facility information.</td></tr>
+            <tr><td>AAM / PHC / CHC / District Hospital</td><td>Existing physical care network and primary-care services.</td><td>Digitally connect the patient journey and expose operational bottlenecks.</td></tr>
+            <tr><td>Government of Maharashtra — AAM</td><td>13-service package, MJPJAY and existing helplines.</td><td>Surface scheme eligibility and connect the journey across the AAM network.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Integration boundary</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Built in CareBridge</th><th>Consume / coordinate</th><th>Do not duplicate</th></tr></thead>
+          <tbody>
+            <tr><td>Referral orchestration</td><td>ABDM-linked records and consent</td><td>National health-record infrastructure</td></tr>
+            <tr><td>Capability/readiness layer</td><td>Facility/service discovery where supported</td><td>A new parallel facility directory</td></tr>
+            <tr><td>Follow-up task engine</td><td>eSanjeevani as a teleconsult step</td><td>A new telemedicine network</td></tr>
+            <tr><td>Emergency coordination</td><td>NHM 108/102 channels where permitted</td><td>A new ambulance fleet</td></tr>
+            <tr><td>Maharashtra scheme awareness</td><td>PM-JAY / MJPJAY eligibility information</td><td>A new financial scheme</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="solution-matrix">
+      <div class="section-head">
+        <span class="section-number">03</span>
+        <div>
+          <h2>Master Gap-to-Solution Matrix</h2>
+          <p>Core problems, solution mechanisms and intended outcomes.</p>
+        </div>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Problem / gap</th><th>CareBridge solution</th><th>USP / outcome</th></tr></thead>
+          <tbody>
+            <tr><td>Long travel / wrong-facility visits</td><td>Capability-aware referral based on service, diagnostic, specialist and resource availability.</td><td>RIGHT FACILITY, FIRST TIME</td></tr>
+            <tr><td>Referral delay / referral attrition</td><td>Sent → Accepted → Scheduled → Arrived → Treated → Back-referred → Closed.</td><td>NO LOST REFERRAL</td></tr>
+            <tr><td>Facility capability uncertainty</td><td>Readiness layer for services, diagnostics, equipment, medicine and specialist availability.</td><td>LIVE CARE READINESS</td></tr>
+            <tr><td>Diagnostic coordination</td><td>Order → identify facility → schedule/route → track test → transmit result → update care plan.</td><td>DIAGNOSTIC-AWARE REFERRAL</td></tr>
+            <tr><td>Medicine availability</td><td>Facility-level stock visibility with low-stock alerts and referral alternatives.</td><td>PRESCRIBE WHERE IT IS AVAILABLE</td></tr>
+            <tr><td>Affordability barrier</td><td>Surface PM-JAY/MJPJAY eligibility when referral or diagnostic order is created.</td><td>KNOW THE COST BEFORE YOU TRAVEL</td></tr>
+            <tr><td>Continuity of care</td><td>Patient journey timeline linking referral, consultation, diagnostics, treatment and follow-up.</td><td>PATIENT JOURNEY TIMELINE</td></tr>
+            <tr><td>Connectivity</td><td>Offline-first queue, encrypted local cache, sync queue, conflict handling and retry.</td><td>WORKS WHEN INTERNET DOESN'T</td></tr>
+            <tr><td>Language / health literacy</td><td>Local-language UI, voice input/output, pictorial prompts and assisted mode.</td><td>VOICE + LOCAL-LANGUAGE CARE</td></tr>
+            <tr><td>Frontline-worker overload</td><td>Single workflow, prefilled records, minimal data entry and role-specific screens.</td><td>ONE WORKFLOW, NOT ONE MORE PORTAL</td></tr>
+            <tr><td>Emergency escalation</td><td>Share location, urgency and essential patient information with existing channels where permitted.</td><td>SMART ESCALATION</td></tr>
+            <tr><td>High-risk follow-up</td><td>Risk register, due-date engine, worker task list and missed-follow-up escalation.</td><td>CARE DOESN'T END AT DISCHARGE</td></tr>
+            <tr><td>Quality monitoring</td><td>District dashboards for bottlenecks, waiting, diagnostics, medicines, follow-up and unresolved cases.</td><td>HEALTH-SYSTEM CONTROL TOWER</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="workflow">
+      <div class="section-head">
+        <span class="section-number">04</span>
+        <div>
+          <h2>Signature Innovation: Closed-Loop Referral</h2>
+          <p>The referral remains active until the receiving facility records an outcome and follow-up is assigned.</p>
+        </div>
+      </div>
+
+      <div class="flow">
+        <span>Created</span><b>→</b><span>Capability Check</span><b>→</b><span>Accepted</span><b>→</b>
+        <span>Scheduled</span><b>→</b><span>Arrived</span><b>→</b><span>Treatment / Diagnostic</span><b>→</b>
+        <span>Back-Referral</span><b>→</b><span>Closed + Follow-up</span>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Stage</th><th>Required system state</th><th>Responsible action</th><th>Closure condition</th></tr></thead>
+          <tbody>
+            <tr><td>Referral created</td><td>Need + destination identified</td><td>Origin facility submits referral</td><td>Referral ID generated</td></tr>
+            <tr><td>Capability check</td><td>Service/resource requirement matched</td><td>System checks receiving capability</td><td>Suitable facility identified</td></tr>
+            <tr><td>Accepted</td><td>Receiving facility confirms capacity</td><td>Receiving facility acknowledges</td><td>Acceptance recorded</td></tr>
+            <tr><td>Scheduled</td><td>Visit/test pathway defined</td><td>Appointment/queue assigned</td><td>Schedule visible</td></tr>
+            <tr><td>Arrived</td><td>Patient reaches destination</td><td>Arrival recorded</td><td>Episode activated</td></tr>
+            <tr><td>Treatment / diagnostic</td><td>Care action underway</td><td>Result/outcome captured</td><td>Clinical action documented</td></tr>
+            <tr><td>Back-referral</td><td>Return care defined</td><td>Origin/follow-up facility receives plan</td><td>Back-referral recorded</td></tr>
+            <tr><td>Closed + follow-up</td><td>Outcome + next task stored</td><td>Owner and due date assigned</td><td>Follow-up task active / episode closed</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Facility readiness fields</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Readiness dimension</th><th>Data field / signal</th><th>Routing use</th></tr></thead>
+          <tbody>
+            <tr><td>Service capability</td><td>Emergency, obstetrics, paediatrics, NCD, surgery, etc.</td><td>Match care requirement</td></tr>
+            <tr><td>Diagnostics</td><td>Lab, X-ray, ultrasound and locally relevant tests</td><td>Avoid unavailable-test referrals</td></tr>
+            <tr><td>Medicine</td><td>Reported availability + freshness timestamp</td><td>Avoid repeated medicine-search journeys</td></tr>
+            <tr><td>Equipment</td><td>Critical equipment operational status where maintainable</td><td>Avoid non-functional service routing</td></tr>
+            <tr><td>Specialist</td><td>Verified provider/facility pathway + availability</td><td>Match specialist requirement</td></tr>
+            <tr><td>Referral acceptance</td><td>Receiving facility confirmation</td><td>Reduce failed arrivals</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="innovation">
+      <div class="section-head">
+        <span class="section-number">05</span>
+        <div>
+          <h2>Core USPs / Wow Factors</h2>
+          <p>Features that define the proposed CareBridge workflow.</p>
+        </div>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>#</th><th>USP / wow factor</th><th>Working principle</th><th>Practical value</th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td>Closed-loop referral engine</td><td>Referral remains open until outcome and follow-up are recorded.</td><td>Attacks referral attrition and continuity loss.</td></tr>
+            <tr><td>2</td><td>Facility capability-aware routing</td><td>Uses service, diagnostic, specialist, medicine/equipment and readiness data.</td><td>Moves from nearest facility to nearest appropriate facility.</td></tr>
+            <tr><td>3</td><td>Integration layer</td><td>Complements ABDM, eSanjeevani and NHM.</td><td>Avoids duplicating national infrastructure.</td></tr>
+            <tr><td>4</td><td>Offline-first continuity</td><td>Workflows remain functional during connectivity loss with queued synchronization.</td><td>Fits low-connectivity operating conditions.</td></tr>
+            <tr><td>5</td><td>Explainable local triage</td><td>Rule-based or validated decision support can run locally and show the reason for priority.</td><td>Lower compute needs and easier auditability.</td></tr>
+            <tr><td>6</td><td>Diagnostic-aware referral</td><td>Referral includes diagnostic requirements and identifies where they can be completed.</td><td>Connects clinical need with actual capability.</td></tr>
+            <tr><td>7</td><td>Medicine-aware navigation</td><td>Shows or consumes approved stock information.</td><td>Reduces repeated journeys for unavailable medicines.</td></tr>
+            <tr><td>8</td><td>High-risk care register</td><td>Tracks due dates and escalation for maternal, child and chronic high-risk cases.</td><td>Makes follow-up a system responsibility.</td></tr>
+            <tr><td>9</td><td>One workflow for frontline workers</td><td>Role-specific screens with minimal entry and reduced duplicate documentation.</td><td>Responds to workload and fragmented-tool concerns.</td></tr>
+            <tr><td>10</td><td>Cost-aware public deployment</td><td>Open-source stack, existing devices and integration-first architecture.</td><td>Limits new infrastructure requirements.</td></tr>
+            <tr><td>11</td><td>Scheme-aware referral</td><td>Checks and displays PM-JAY/MJPJAY eligibility at referral or diagnostic order.</td><td>Reduces affordability guesswork at the point of action.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="clinical">
+      <div class="section-head">
+        <span class="section-number">06</span>
+        <div>
+          <h2>Clinical Decision Support, Offline Operation and Worker Workflow</h2>
+        </div>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Decision-support control</th><th>Implementation requirement</th><th>Safety boundary</th></tr></thead>
+          <tbody>
+            <tr><td>Clinical basis</td><td>IMNCI-style paediatric/neonatal danger-sign logic; maternal criteria from approved protocols</td><td>Use only for defined, validated use cases</td></tr>
+            <tr><td>Explainability</td><td>Display reason for priority classification</td><td>No opaque priority score without traceability</td></tr>
+            <tr><td>Human verification</td><td>Clinician/authorized worker confirms action</td><td>No autonomous diagnosis</td></tr>
+            <tr><td>Version control</td><td>Log rule/model version for each decision</td><td>Audit trail required</td></tr>
+            <tr><td>Red-flag escalation</td><td>Explicit emergency / referral pathway</td><td>Safe fallback when data are incomplete</td></tr>
+            <tr><td>Evaluation</td><td>Sensitivity, specificity, false-negative risk and workflow usability</td><td>Clinical validation before deployment</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Offline component</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Component</th><th>Design choice</th><th>Purpose</th></tr></thead>
+          <tbody>
+            <tr><td>Local data store</td><td>Encrypted SQLite / local store</td><td>Continue core workflow without network</td></tr>
+            <tr><td>Outbox</td><td>Transaction queue with unique IDs</td><td>Prevent duplicate application after reconnect</td></tr>
+            <tr><td>Synchronization</td><td>Retry + compressed payloads</td><td>Reduce data use and recover connectivity</td></tr>
+            <tr><td>Conflict handling</td><td>Record-type-specific policy</td><td>Avoid unsafe blanket last-write-wins behavior</td></tr>
+            <tr><td>Audit metadata</td><td>Timestamp + actor metadata</td><td>Traceability</td></tr>
+            <tr><td>User state</td><td>Local / pending sync / synchronized indicator</td><td>Make data status visible</td></tr>
+            <tr><td>Recovery</td><td>Secure re-authentication after device loss/recovery</td><td>Protect cached health data</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="architecture">
+      <div class="section-head">
+        <span class="section-number">07</span>
+        <div>
+          <h2>Technical Architecture and Interoperability</h2>
+        </div>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Layer</th><th>Technology / standard</th><th>Purpose</th></tr></thead>
+          <tbody>
+            <tr><td>Experience layer</td><td>Flutter / PWA / mobile web</td><td>Low-spec Android, local language, voice, accessibility and role-based screens</td></tr>
+            <tr><td>Offline data layer</td><td>SQLite / local encrypted store + sync queue</td><td>Offline transactions, retry, conflict handling and audit trail</td></tr>
+            <tr><td>Core services</td><td>FastAPI / REST services</td><td>Patient journey, referrals, queue, follow-up, facility capability, diagnostics and medicine visibility</td></tr>
+            <tr><td>Interoperability layer</td><td>ABDM-aligned APIs (HIU/HIP, UHI/BECKN); FHIR where applicable</td><td>Consent-based exchange and connection to existing health ecosystem</td></tr>
+            <tr><td>Decision-support layer</td><td>Validated rules / lightweight models</td><td>Triage, risk flags and follow-up prioritization with human-in-loop</td></tr>
+            <tr><td>Analytics</td><td>Facility / district dashboards</td><td>Referral bottlenecks, unresolved cases, resource visibility and quality indicators</td></tr>
+            <tr><td>Security</td><td>RBAC, encryption, audit logs, secure key/token handling</td><td>Least-privilege access and accountability</td></tr>
+            <tr><td>Notifications</td><td>Push / SMS / approved channels</td><td>Appointments, referral status, follow-up and escalation</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>ABDM integration sequence</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Milestone</th><th>Target capability</th><th>CareBridge dependency</th></tr></thead>
+          <tbody>
+            <tr><td>M1</td><td>ABHA + Healthcare Professionals Registry identity / verification</td><td>Approved identity and verification flow</td></tr>
+            <tr><td>M2</td><td>Health Facility Registry registration</td><td>Facility references and verified facility data</td></tr>
+            <tr><td>M3</td><td>HIP / HIU consent management + FHIR-based exchange</td><td>Consent artifact, data pull/push and interoperability</td></tr>
+            <tr><td>UHI / BECKN</td><td>Facility / service discovery</td><td>Use existing discovery network rather than a custom directory</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="roadmap">
+      <div class="section-head">
+        <span class="section-number">08</span>
+        <div>
+          <h2>Feasibility, Cost and Deployment Roadmap</h2>
+        </div>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Cost area</th><th>Burden</th><th>Cost-control approach</th><th>Economic implication</th></tr></thead>
+          <tbody>
+            <tr><td>Software licensing</td><td>Low</td><td>Open-source Flutter/FastAPI/SQLite/MySQL or equivalent.</td><td>Low recurring license expense; cloud services still incur usage costs.</td></tr>
+            <tr><td>Devices</td><td>Low–Medium</td><td>Use existing government/frontline-worker Android devices where feasible.</td><td>Avoids large device procurement; compatibility testing remains necessary.</td></tr>
+            <tr><td>Connectivity</td><td>Low–Medium</td><td>Offline-first design and compressed synchronization.</td><td>Can reduce data consumption and productivity losses.</td></tr>
+            <tr><td>Cloud</td><td>Medium and scalable</td><td>Start with a small pilot and scale by active users/transactions.</td><td>Pay-as-you-grow model with monitoring and security controls.</td></tr>
+            <tr><td>Integration / ABDM compliance</td><td>Medium–High upfront</td><td>Standards-based APIs and staged M1–M3 milestones.</td><td>Higher initial engineering effort can reduce integration debt.</td></tr>
+            <tr><td>Training / adoption</td><td>Medium</td><td>Role-based UI, local languages, short workflows and assisted training.</td><td>Training is a real cost; usability can reduce recurring support burden.</td></tr>
+            <tr><td>Clinical validation</td><td>Medium–High</td><td>Validate triage rules with qualified clinicians.</td><td>Essential safety investment.</td></tr>
+            <tr><td>Maintenance / security</td><td>Medium recurring</td><td>Updates, audit logs, backups, monitoring and incident response.</td><td>Recurring operational cost is required.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Deployment phases</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Phase</th><th>Work package</th><th>Output / gate</th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td>Evidence & workflow validation</td><td>Mapped referral, diagnostic, medicine and follow-up workflows</td></tr>
+            <tr><td>2</td><td>Interoperability design</td><td>ABDM-aligned identity, consent, FHIR mapping; M1–M3 sequence</td></tr>
+            <tr><td>3</td><td>MVP build</td><td>Offline patient journey, referral closure, capability, triage support, follow-up and dashboard</td></tr>
+            <tr><td>4</td><td>Safety & usability</td><td>Clinical, usability, offline, security, privacy, language and failure-mode testing</td></tr>
+            <tr><td>5</td><td>Pilot</td><td>Limited Maharashtra cluster; baseline vs post-deployment KPI measurement</td></tr>
+            <tr><td>6</td><td>Scale</td><td>Certification, approved integrations, expanded resource data, analytics and governance</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="kpis">
+      <div class="section-head">
+        <span class="section-number">09</span>
+        <div>
+          <h2>Measurement Framework and Hackathon MVP</h2>
+        </div>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>KPI</th><th>Definition</th><th>Purpose</th></tr></thead>
+          <tbody>
+            <tr><td>Referral completion rate</td><td>Completed referrals / referrals issued</td><td>Continuity</td></tr>
+            <tr><td>Referral closure rate</td><td>Referrals with documented receiving-facility outcome / referrals issued</td><td>Accountability</td></tr>
+            <tr><td>Time to referral acceptance</td><td>Median time from referral creation to receiving-facility acceptance</td><td>Coordination</td></tr>
+            <tr><td>Wrong-facility visit rate</td><td>Patients sent to facilities unable to provide required service / routed patients</td><td>Access efficiency</td></tr>
+            <tr><td>Diagnostic completion time</td><td>Order-to-result time</td><td>Diagnostic coordination</td></tr>
+            <tr><td>Medicine fulfillment rate</td><td>Prescriptions fulfilled from available local stock / eligible prescriptions</td><td>Resource access</td></tr>
+            <tr><td>Follow-up completion</td><td>Completed scheduled high-risk follow-ups / due follow-ups</td><td>Continuity</td></tr>
+            <tr><td>Offline transaction success</td><td>Offline actions successfully synchronized / offline actions queued</td><td>Resilience</td></tr>
+            <tr><td>Duplicate data-entry rate</td><td>Repeated entry of the same required information</td><td>Worker burden</td></tr>
+            <tr><td>Median patient waiting time</td><td>Registration/referral/consultation waiting time</td><td>Service quality</td></tr>
+            <tr><td>SOS coordination time</td><td>SOS trigger to transport/facility acknowledgement</td><td>Emergency</td></tr>
+            <tr><td>Scheme-eligibility surfaced rate</td><td>Eligible referrals/orders where PM-JAY/MJPJAY eligibility was shown / total eligible</td><td>Affordability</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Hackathon MVP scope</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>MVP module</th><th>Demonstration scope</th><th>Evidence shown</th></tr></thead>
+          <tbody>
+            <tr><td>Registration / identity</td><td>Mock or approved sandbox flow</td><td>Patient linkage screen</td></tr>
+            <tr><td>Offline patient episode</td><td>Local profile + episode data</td><td>Offline create/edit + sync state</td></tr>
+            <tr><td>Triage support</td><td>Explainable rule-based IMNCI-style demonstration</td><td>Priority + reason + escalation</td></tr>
+            <tr><td>Facility capability</td><td>Services, diagnostics and medicine fields</td><td>Capability-aware routing result</td></tr>
+            <tr><td>Closed-loop referral</td><td>Acceptance + status timeline + back-referral</td><td>Referral lifecycle</td></tr>
+            <tr><td>High-risk follow-up</td><td>Task list + due date + escalation</td><td>Worker follow-up queue</td></tr>
+            <tr><td>Multilingual / voice</td><td>Local-language and voice-assisted UI</td><td>Accessibility demo</td></tr>
+            <tr><td>Dashboard</td><td>Unresolved referrals + resource gaps</td><td>Facility / district view</td></tr>
+            <tr><td>Integration-ready API</td><td>Documented mapping to ABDM/FHIR/UHI concepts</td><td>Architecture/API mapping; no fake live integration</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="guardrails">
+      <div class="section-head">
+        <span class="section-number">10</span>
+        <div>
+          <h2>Research Limits and Presentation Guardrails</h2>
+        </div>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Area</th><th>Current limitation</th><th>Required next step</th></tr></thead>
+          <tbody>
+            <tr><td>Facility capability data</td><td>Stale data can create incorrect routing</td><td>Freshness timestamp, source ownership and update policy</td></tr>
+            <tr><td>Medicine availability</td><td>Availability may not be truly real-time</td><td>Show source + last-updated time; test data freshness</td></tr>
+            <tr><td>Clinical triage</td><td>Rules require clinician validation</td><td>Validate against IMNCI / approved maternal danger-sign protocols</td></tr>
+            <tr><td>Interoperability</td><td>Production integration depends on APIs, access and certification</td><td>Complete sandbox, credentials and M1–M3 governance</td></tr>
+            <tr><td>Offline conflicts</td><td>Different records need different conflict rules</td><td>Test each record type under reconnect scenarios</td></tr>
+            <tr><td>Privacy</td><td>DPDP implementation is phased</td><td>Formal legal review and staged compliance plan</td></tr>
+            <tr><td>Impact</td><td>Benefits are hypotheses until measured</td><td>Baseline/post-deployment pilot evaluation</td></tr>
+            <tr><td>Economics</td><td>Integration, training and governance are major costs</td><td>Track staff time, travel cost, integration and support cost</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Do not claim</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Do not claim</th><th>Use this factual framing instead</th></tr></thead>
+          <tbody>
+            <tr><td>CareBridge replaces ABDM / eSanjeevani</td><td>CareBridge coordinates the care journey around existing infrastructure.</td></tr>
+            <tr><td>CareBridge provides ambulances</td><td>CareBridge coordinates with existing NHM 108/102 channels where permitted.</td></tr>
+            <tr><td>AI diagnoses patients</td><td>Decision support / triage assistance with human verification.</td></tr>
+            <tr><td>Medicine stock is always real-time</td><td>Medicine information is shown with source and freshness controls.</td></tr>
+            <tr><td>Live ABDM integration is complete</td><td>Integration is mapped to approved APIs and M1–M3 milestones.</td></tr>
+            <tr><td>Full DPDPA compliance today</td><td>Architecture is aligned to the notified phased implementation timeline.</td></tr>
+            <tr><td>Reduced mortality is proven</td><td>Potential clinical benefit requires formal evaluation.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="qa">
+      <div class="section-head">
+        <span class="section-number">11</span>
+        <div>
+          <h2>Judge Q&A</h2>
+        </div>
+      </div>
+
+      <div class="qa-grid">
+        <article><h3>Why not ABDM?</h3><p>ABDM is national digital-health infrastructure. CareBridge is a care-coordination layer for the patient journey, referral closure, follow-up and readiness.</p></article>
+        <article><h3>Why not eSanjeevani?</h3><p>eSanjeevani provides telemedicine. CareBridge can use teleconsultation as one step inside a broader closed-loop journey.</p></article>
+        <article><h3>What is actually innovative?</h3><p>Capability-aware routing, closed-loop referral, resource-aware navigation, scheme awareness, offline continuity and high-risk follow-up in one integration-first workflow.</p></article>
+        <article><h3>Can AI diagnose patients?</h3><p>No. The intended role is decision support / triage assistance with clinical protocols, human verification, auditability and validation.</p></article>
+        <article><h3>What if the internet is down?</h3><p>Core data-entry and workflow actions are stored locally and queued for synchronization. Safety and conflict-handling rules must be tested.</p></article>
+        <article><h3>How do you avoid adding work for ASHA/ANM/CHO?</h3><p>Minimize fields, prefill known information, use role-specific screens and measure documentation time as a KPI.</p></article>
+        <article><h3>How do you prove impact?</h3><p>Use a pilot with baseline and post-deployment measures for referral completion, closure, waiting, diagnostics, follow-up and worker documentation burden.</p></article>
+        <article><h3>Does this require new hardware?</h3><p>The design targets existing Android devices where feasible. Software, integration, governance and workflow redesign are the core focus.</p></article>
+      </div>
+    </section>
+
+    <section class="positioning">
+      <div class="section-head">
+        <span class="section-number">12</span>
+        <div><h2>One-line Positioning</h2></div>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <tbody>
+            <tr><th>Problem focus</th><td>Fragmentation between healthcare touchpoints</td></tr>
+            <tr><th>Primary innovation</th><td>Closed-loop, capability-aware care coordination</td></tr>
+            <tr><th>Operating condition</th><td>Offline-capable, multilingual, frontline-worker centred</td></tr>
+            <tr><th>Clinical role</th><td>Decision support / triage assistance, not autonomous diagnosis</td></tr>
+            <tr><th>Interoperability</th><td>ABDM-aligned HIU/HIP, UHI/BECKN and FHIR where applicable</td></tr>
+            <tr><th>Deployment strategy</th><td>Pilot first; evidence before scale</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="sources">
+      <div class="section-head">
+        <span class="section-number">13</span>
+        <div>
+          <h2>Source Register</h2>
+          <p>Sources reproduced from the uploaded CareBridge research report.</p>
+        </div>
+      </div>
+
+      <div class="table-wrap">
+        <table class="sources">
+          <thead><tr><th>Ref.</th><th>Source</th></tr></thead>
+          <tbody>
+            <tr><td>[1]</td><td>Smart India Hackathon 2026, SIH26133 — Accessibility and quality of public healthcare services.</td></tr>
+            <tr><td>[2]</td><td>National Health Authority / ABDM — Health Facility Registry and Personal Health Records information.</td></tr>
+            <tr><td>[3]</td><td>ABDM — Promoting Interoperability in Digital Health — FHIR and interoperable ecosystem.</td></tr>
+            <tr><td>[4]</td><td>ABDM — ABHA brochure — HFR, PHR, UHI, HPR and consent-based record sharing.</td></tr>
+            <tr><td>[5]</td><td>C-DAC — eSanjeevani National Telemedicine Service.</td></tr>
+            <tr><td>[6]</td><td>National Health Mission — ERS / Patient Transport Service — 108/102 ecosystem.</td></tr>
+            <tr><td>[7]</td><td>National Health Mission — 16th Common Review Mission 2024.</td></tr>
+            <tr><td>[8]</td><td>National Health Mission — essential equipment / diagnostics at Ayushman Arogya Mandirs.</td></tr>
+            <tr><td>[9]</td><td>WHO — Classification of digital interventions, services and applications in health, 2nd ed. (2023).</td></tr>
+            <tr><td>[10]</td><td>WHO / HL7 — collaboration on open interoperability standards.</td></tr>
+            <tr><td>[11]</td><td>WHO Alliance for Health Policy and Systems Research — digital transformation in health.</td></tr>
+            <tr><td>[12]</td><td>Frontline Health Workers' Perceptions of Digital Health Platforms in North Guwahati, Assam (2026).</td></tr>
+            <tr><td>[13]</td><td>TECHO+ evaluation in Gujarat — connectivity, duplicate entry and workload barriers.</td></tr>
+            <tr><td>[14]</td><td>Referral care for high-risk pregnant women in rural Rajasthan.</td></tr>
+            <tr><td>[15]</td><td>Referral uptake barriers in rural South India eye care network.</td></tr>
+            <tr><td>[16]</td><td>Emergency obstetric referral-system review in India.</td></tr>
+            <tr><td>[17]</td><td>Performance of health and wellness centres in Chhattisgarh — medicine stock-out evidence.</td></tr>
+            <tr><td>[18]</td><td>Root cause analysis of increased referral rates in a sub-district hospital in Tamil Nadu.</td></tr>
+            <tr><td>[19]</td><td>Digital Health News — Understanding Unified Health Interface (UHI) in the Context of ABDM.</td></tr>
+            <tr><td>[20]</td><td>DPI Global / NHA — ABDM architecture overview.</td></tr>
+            <tr><td>[21]</td><td>Nirmitee.io — ABDM HIP Integration from Scratch.</td></tr>
+            <tr><td>[22]</td><td>Nirmitee.io — ABDM HIU Integration from Scratch.</td></tr>
+            <tr><td>[23]</td><td>PIB / MeitY — Digital Personal Data Protection Rules, 2025.</td></tr>
+            <tr><td>[24]</td><td>Lexology — India's Digital Personal Data Protection Act 2023 brought into force.</td></tr>
+            <tr><td>[25]</td><td>National Health Mission Maharashtra — Ayushman Arogya Mandir — 13 services.</td></tr>
+            <tr><td>[26]</td><td>IMPRI India — Maharashtra Department Schemes Update 2026.</td></tr>
+            <tr><td>[27]</td><td>PSM Made Easy / MoHFW — Integrated Management of Neonatal and Childhood Illness (IMNCI).</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <span>CareBridge · SIH26133 · Team AudaX</span>
+      <span>Prepared from the CareBridge research report · September 2026</span>
+    </div>
+  </footer>
+</body>
+</html>
